@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap 101 Template</title>
     <link href="<?php echo base_url(); ?>application/views/global/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('application/views/global/custom/css/map_style.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>application/views/global/custom/css/header_footer.css" rel="stylesheet">
   </head>
   <body>
