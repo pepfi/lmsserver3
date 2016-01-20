@@ -22,7 +22,7 @@
 		<div class="container">
 			<?php $att = array('class' => 'form-signin');?>
 			
-			<?php echo form_open('admin/validate_credentials', $att); ?>
+			<?php echo   form_open('admin/validate_credentials', $att); ?>
 				<h1 class="form-signin-heading text-muted">Autelan Cloud Platform</h1>
 				<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="">
 				<input type="password" class="form-control" name="password" placeholder="Password" required="">

@@ -127,11 +127,14 @@ class Device extends CI_Controller{
         $order = $Macs_order[count($Macs_order)-1];
         $order = str_replace('%20', ' ', $order);
         $Macs_order[count($Macs_order)-1] = $order;
+//        if($this->device_model->order($Macs_order)){
+//             $url = $_SERVER['HTTP_REFERER']; 
+//             echo "<scrīpt type='text/javascript'>"; 
+//             echo "window.location='".$url."'"; 
+//             echo "</scrīpt>";
+//        }
         if($this->device_model->order($Macs_order)){
-             $url = $_SERVER['HTTP_REFERER']; 
-             echo "<scrīpt type='text/javascript'>"; 
-             echo "location.href='".$url."'"; 
-             echo "</scrīpt>";
+            echo "下发命令成功";
         }
     }
         
