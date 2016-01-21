@@ -3,12 +3,12 @@
 	<head>
 		<title><?php echo $title; ?> | Autelan Cloud Platform</title>
 		<!-- Bootstrap core CSS -->
-    	<link href="application/views/global/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="/application/views/global/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     	<!-- Login form CSS -->
-   		<link href="application/views/global/custom/css/login.css" rel="stylesheet">
+   		<link href="/application/views/global/custom/css/login.css" rel="stylesheet">
    		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	    <script src="application/views/global/custom/js/ie10-viewport-bug-workaround.js"></script>
+	    <script src="/application/views/global/custom/js/ie10-viewport-bug-workaround.js"></script>
 
 	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>

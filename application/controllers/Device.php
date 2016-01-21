@@ -89,6 +89,8 @@ class Device extends CI_Controller{
         $data['device_nav_class'] = "class='active'";
         $data['user_nav_class'] = '';
         $data['log_nav_class'] = '';
+        $data['pvuv_nav_class'] = '';
+        $data['movie_nav_class'] = '';
         
         $data['deviceinfo'] = $this->device_model->deviceinfo($this->session->userdata('offset'), $this->session->userdata('final_pagesize'));
   

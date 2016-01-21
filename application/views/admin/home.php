@@ -104,7 +104,7 @@
 				<div class="col-lg-9 col-md-12">	
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h2><strong>Registered Users</strong></h2>
+							<h2><strong>Registered Devices</strong></h2>
 						</div>
 						<div class="panel-body">
                             
@@ -112,9 +112,9 @@
 								<thead>
 									<tr>
 										<th>Province</th>
-										<th>Users</th>
-										<th>Online</th>
-										<th>Performance</th>
+										<th>All Devices</th>
+										<th>Online Devices</th>
+										<th>Online rate</th>
 									</tr>
 								</thead>
                                 

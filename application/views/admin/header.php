@@ -28,6 +28,16 @@
             </div>
             <div class="col-md-1">
                 <ul class="nav nav-pills">
+                    <li <?php echo $pvuv_nav_class;?>><a href="/pvuv/">Pv/Uv</a></li>
+                </ul>                
+            </div>
+            <div class="col-md-1">
+                <ul class="nav nav-pills">
+                    <li <?php echo $movie_nav_class;?>><a href="/movie/">电影</a></li>
+                </ul>                
+            </div>            
+            <div class="col-md-1">
+                <ul class="nav nav-pills">
                     <li <?php echo $user_nav_class;?>><a href="/user/">用户管理</a></li>
                 </ul>
             </div>
@@ -36,7 +46,6 @@
                     <li <?php echo $log_nav_class;?>><a href="/log/">日志</a></li>
                 </ul>
             </div>
-            <div class="col-md-1"></div>
             <div class="col-md-1"></div>
             <div class="col-md-2">
                 <ul class="nav nav-pills">

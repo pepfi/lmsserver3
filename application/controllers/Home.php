@@ -5,7 +5,7 @@ class Home extends CI_Controller{
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('url');
-        $this->load->model('Home_model');
+        $this->load->model('home_model');
     }
     
     function getProvince($ip_query_result) {
@@ -21,8 +21,10 @@ class Home extends CI_Controller{
         $data['device_nav_class'] = '';
         $data['user_nav_class'] = '';
         $data['log_nav_class'] = '';
+        $data['pvuv_nav_class'] = '';
+        $data['movie_nav_class'] = '';
         
-        $data['region_status'] = $this->Home_model->get_region_status();
+        $data['region_status'] = $this->home_model->get_region_status();
         $data['province'] = array(array('dev' => 0, 'online' => 0, 'name' => '北京'),
                                  array('dev' => 0, 'online' => 0, 'name' => '天津'),
                                  array('dev' => 0, 'online' => 0, 'name' => '河北'),
