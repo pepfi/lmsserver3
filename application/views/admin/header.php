@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-1">
                 <ul class="nav nav-pills">
-                    <li <?php echo $movie_nav_class;?>><a href="/movie/">电影</a></li>
+                    <li style="font-size:12px;line-height:20px" <?php echo $movie_nav_class;?>><a href="/movie/">电影播放量</a></li>
                 </ul>                
             </div>            
             <div class="col-md-1">

@@ -1,22 +1,8 @@
 
 <script src="/application/views/global/custom/js/esl.js"></script>
 <div style="width:100%;">总Pv：<?php echo $totalpv;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总Uv：<?php echo $totaluv;?></div>
-<div id="main" style="width:100%;height:500px;border:1px solid #ccc"></div>
+<div id="main" style="width:800px;height:400px;border:1px solid #ccc"></div>
 <?php 
-    $pv6 = 1;
-    $pv5 = 1;
-    $pv4 = 1;
-    $pv3 = 1;
-    $pv2 = 1;
-    $pv1 = 1;
-    $pv0 = 1;
-    $uv6 = 1;
-    $uv5 = 1;
-    $uv4 = 1;
-    $uv3 = 1;
-    $uv2 = 1;
-    $uv1 = 1;
-    $uv0 = 1;
     date_default_timezone_set('PRC');
     $six_days_ago = "'".date('y-m-d', strtotime('-6 day'))."'";
     $five_days_ago = "'".date('y-m-d', strtotime('-5 day'))."'";
@@ -70,12 +56,12 @@
                     series : [
                         {
                             name:'Pv',
-                            type:'bar',
+                            type:'line',
                             data:[".$pv['six_days_ago'].", ".$pv['five_days_ago'].", ".$pv['four_days_ago'].", ".$pv['three_days_ago'].", ".$pv['two_days_ago'].", ".$pv['yesterday'].", ".$pv['today']."]
                         },
                         {
                             name:'Uv',
-                            type:'bar',
+                            type:'line',
                             data:[".$uv['six_days_ago'].", ".$uv['five_days_ago'].", ".$uv['four_days_ago'].", ".$uv['three_days_ago'].", ".$uv['two_days_ago'].", ".$uv['yesterday'].", ".$uv['today']."]
                         }
                     ]
@@ -86,42 +72,37 @@
         );
         </script>";
 ?>
-<div style="width:300px;float:right;margin-top:10px;">
-    <span><?php echo $page;?>跳到<input type='text' id='to_page' style='width:30px;height:20px'>页</span>
-    <input type="hidden" id="jump_url" value="<?php echo base_url('pvuv/index');?>">
-    <input type="button" value="确定" class='btn btn-default btn-xs' onClick='jump()'>
-</div>
-<div style="width:100%;float:left">
+<div style="width:800px;float:left;margin-top:10px">
     <table>
 
         <tr style="background:#337ab7;color:white;">
-            <td width="15%">device_mac</td>
-            <td width="10%">time</td>
+            <td width="20%">device_mac</td>
+            <td width="15%">time</td>
             <td width="10%">pv</td>
-            <td width="15%">download_app_times</td>
+            <td width="10%">download</td>
             <td width="10%">uv</td>
             <td width="10%">uv_andriod</td>
             <td width="10%">uv_ios</td>
-            <td width="20%">uv_windows</td>
+            <td width="15%">uv_windows</td>
             <td width="10%">uv_others</td>
         </tr>
         <?php foreach($deviceinfo as $row):?>
             <tr> 
-                <td width="15%"><?php echo $row['device_mac'];?></td>
-                <td width="10%"><?php echo $row['time'];?></td>
+                <td width="20%"><?php echo $row['device_mac'];?></td>
+                <td width="15%"><?php echo $row['time'];?></td>
                 <td width="10%"><?php echo $row['pv'];?></td>
-                <td width="15%"><?php echo $row['download_app_times'];?></td>
+                <td width="10%"><?php echo $row['download_app_times'];?></td>
                 <td width="10%"><?php echo $row['uv'];?></td>
                 <td width="10%"><?php echo $row['uv_android'];?></td>
                 <td width="10%"><?php echo $row['uv_ios'];?></td>
-                <td width="20%"><?php echo $row['uv_windows'];?></td>
+                <td width="15%"><?php echo $row['uv_windows'];?></td>
                 <td width="10%"><?php echo $row['uv_others'];?></td>             
             </tr>
         <?php endforeach?>
         
     </table>
 </div>
-<div style="width:300px;float:right;margin-top:10px;">
+<div style="width:600px;float:right;margin-top:10px;">
     <span><?php echo $page;?>跳到<input type='text' id='to_page' style='width:30px;height:20px'>页</span>
     <input type="hidden" id="jump_url" value="<?php echo base_url('pvuv/index');?>">
     <input type="button" value="确定" class='btn btn-default btn-xs' onClick='jump()'>
