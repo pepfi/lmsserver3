@@ -11,7 +11,7 @@ class Pvuv_log_model extends CI_Model {
         
         $flag = 0;
         $num=0;    //用来记录目录下的文件个数
-        $dirname='D:\nginx\test'; //要遍历的目录名字
+        $dirname='D:\d\log'; //要遍历的目录名字
         $dir_handle=opendir($dirname);
         
         //file 按行读取

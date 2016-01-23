@@ -12,6 +12,7 @@ class Pvuv_device_model extends CI_Model {
         //$timeSelect = date("Y-m-d",strtotime("-3 day"));
         //return $timeSelect;
        // $deviceMacArray = array();
+        
         $timeFlag = date("Y-m-d",strtotime("-1 day"));
         $sqlForDeviceMac = "SELECT device_mac from `pvuv-log` group by device_mac";
         $deviceMacArray = $this->db->query($sqlForDeviceMac)->result();
