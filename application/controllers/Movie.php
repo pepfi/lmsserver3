@@ -54,7 +54,7 @@ class Movie extends CI_Controller{
                 $data['movie_6_pv'.$movie_time] = $movie_times;
                 break;
             default:
-                echo "错误";
+//                echo "错误";
             break;
         }
         $this->load->vars($data);
@@ -84,7 +84,7 @@ class Movie extends CI_Controller{
                 $this->movie_result($movie_name, "_today", $movie_times);
                 break;
             default:
-                echo "错误";
+//                echo "错误";
         }
     }
     
