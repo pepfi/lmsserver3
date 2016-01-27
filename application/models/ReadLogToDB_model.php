@@ -15,7 +15,7 @@ class ReadLogToDB_model extends CI_Model {
         
         $flag = 0;
         $num=0;    //用来记录目录下的文件个数
-        $dir =  "D:\d\log";
+        $dir =  'D:\nginx\test';
         $dirname = $dir."\\"; //要遍历的目录名字
         echo "dirname is:$dirname:end";
         
@@ -62,6 +62,7 @@ class ReadLogToDB_model extends CI_Model {
                                 $time_local = substr($time_content,-5,2).substr($time_content,-2,2);
                                 $request = $file_content_per_array['request_method'];
                                 $url = $file_content_per_array['uri'];
+                                echo $url;
                                 $protocol = $file_content_per_array['server_protocol'];
                                 $status = $file_content_per_array['status'];
                                 $body_bytes_sent = $file_content_per_array['body_bytes_sent'];
@@ -74,16 +75,17 @@ class ReadLogToDB_model extends CI_Model {
                                 if(isset($remote_mac) && ($file_content_per_array['host'] === '192.168.0.1'))
                                 {
                                     $sql = "INSERT INTO `pvuv-log` (device_mac,remote_ip,remote_mac,time,time_local,request,url,protocol,status,body_bytes_sent,http_user_agent) values ('{$device_mac}','{$remote_ip}','{$remote_mac}','{$time}','{$time_local}','{$request}','{$url}','{$protocol}','{$status}','{$body_bytes_sent}','{$http_user_agent}')";
+                                    
                                     //echo "make sql";
                                     if(!$this->db->query($sql))
                                     {
                                         $flag = 1;
-                                        echo "insert errot";
+                                        echo "insert errot $sql";
                                         continue;
                                     }
                                 }
                                 $per_num += 1;   
-                                //echo "per_num: $per_num";
+                                echo "per_num: $per_num";
                                 //break; //onefile every line
                             }
                         
