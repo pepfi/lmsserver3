@@ -62,7 +62,9 @@ class ReadLogToDB_model extends CI_Model {
                                 $time_local = substr($time_content,-5,2).substr($time_content,-2,2);
                                 $request = $file_content_per_array['request_method'];
                                 $url = $file_content_per_array['uri'];
-                                echo $url;
+                                $url_array = explode('/',$url);
+                                $count = count($url_array);
+                                $url_array2 = explode('.',$url_array[$count - 1]);
                                 $protocol = $file_content_per_array['server_protocol'];
                                 $status = $file_content_per_array['status'];
                                 $body_bytes_sent = $file_content_per_array['body_bytes_sent'];
@@ -72,7 +74,7 @@ class ReadLogToDB_model extends CI_Model {
                                 //echo "remoteip: $remote_ip";
                                 //echo "$remote_ip:A$remote_mac:B$time_content:C$timeYmd:D$timeHms:E$time:F$time_local:G$request:H$url:I$protocol:J$status:K$body_bytes_sent:L$http_user_agent:M$host:N";
            
-                                if(isset($remote_mac) && ($file_content_per_array['host'] === '192.168.0.1'))
+                                if(isset($remote_mac) && (($file_content_per_array['host'] === '192.168.0.1') || ($url_array2[1] = mp4)))
                                 {
                                     $sql = "INSERT INTO `pvuv-log` (device_mac,remote_ip,remote_mac,time,time_local,request,url,protocol,status,body_bytes_sent,http_user_agent) values ('{$device_mac}','{$remote_ip}','{$remote_mac}','{$time}','{$time_local}','{$request}','{$url}','{$protocol}','{$status}','{$body_bytes_sent}','{$http_user_agent}')";
                                     
