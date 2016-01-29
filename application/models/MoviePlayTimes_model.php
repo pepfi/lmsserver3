@@ -24,7 +24,15 @@ class MoviePlayTimes_model extends CI_Model {
         for($i = 0;$i < $deviceMacNum;$i++)
         {
             $targetMac = $deviceMacArray[$i]->device_mac;
-            //how you see me 播放次数
+            $result = $this->db->query("SELECT hostsn FROM `info_lteinfo` WHERE mac = '{$targetMac}'")->result_array();
+            if(isset($result[0]['hostsn']))
+            {
+                $sn = $result[0]['hostsn'];
+            }
+            else
+            {
+                $sn = '000000';
+            }
             $TimePerMac = array();
             $TimePerMac[0] = $this->db->query("SELECT * FROM `pvuv-log` WHERE time BETWEEN '{$timeFlag} 00:00:00' AND '{$timeFlag} 23:59:59' AND device_mac = '{$targetMac}' AND url like '%media_5020%'")->num_rows();
             
@@ -62,8 +70,8 @@ class MoviePlayTimes_model extends CI_Model {
             
             for($j = 0;$j < 30;$j++)
             {
-                $sql_update = "UPDATE `movie-times` set movie_play_times = {$TimePerMac[$j]} WHERE time = '{$timeFlag}' AND movie_name = '{$movieNameArray[$j]}' AND device_mac = '{$targetMac}'";
-                $sql_insert = "INSERT INTO `movie-total` (device_mac,time,movie_name,movie_play_times) VALUES ('{$targetMac}','{$timeFlag}','{$movieNameArray[$j]}','{$TimePerMac[$j]}')";
+                $sql_update = "UPDATE `movie-times` set movie_play_times = {$TimePerMac[$j]} WHERE time = '{$timeFlag}' AND movie_name = '{$movieNameArray[$j]}' AND device_mac = '{$targetMac}' AND sn = '{$sn}'";
+                $sql_insert = "INSERT INTO `movie-total` (device_mac,sn,time,movie_name,movie_play_times) VALUES ('{$targetMac}','{$sn}','{$timeFlag}','{$movieNameArray[$j]}','{$TimePerMac[$j]}')";
                 if($this->db->query("SELECT * from `movie-times` WHERE time = '{$timeFlag}' AND movie_name = '{$movieNameArray[$j]}' AND device_mac = '{$targetMac}'")->num_rows())
                 {
                     $query = $this->db->query($sql_update);

@@ -19,8 +19,16 @@ class Pvuv_device_model extends CI_Model {
         for($i = 0 ;$i < $deviceMacNum;$i++)
         {
             $targetMac = $deviceMacArray[$i]->device_mac;
-            $sql = "SELECT count('{$deviceMacArray[$i]->device_mac}') FROM `pvuv-log` WHERE time BETWEEN '{$timeFlag} 00:00:00' AND '{$timeFlag} 23:59:59'"; 
-            
+            //$sql = "SELECT count('{$deviceMacArray[$i]->device_mac}') FROM `pvuv-log` WHERE time BETWEEN '{$timeFlag} 00:00:00' AND '{$timeFlag} 23:59:59'"; 
+            $result = $this->db->query("SELECT hostsn FROM `info_lteinfo` WHERE mac = '{$targetMac}'")->result_array();
+            if(isset($result[0]['hostsn']))
+            {
+                $sn = $result[0]['hostsn'];
+            }
+            else
+            {
+                $sn = '000000';
+            }
             //pv数量
             $pv = $this->db->query("SELECT * FROM `pvuv-log` WHERE time BETWEEN '{$timeFlag} 00:00:00' AND '{$timeFlag} 23:59:59' AND device_mac = '{$targetMac}' AND url like '%index.html%'")->num_rows();
             //下载次数
@@ -37,20 +45,20 @@ class Pvuv_device_model extends CI_Model {
             $uv_windows = $this->db->query("SELECT remote_mac from `pvuv-log` WHERE time BETWEEN '{$timeFlag} 00:00:00' AND '{$timeFlag} 23:59:59' AND http_user_agent like '%windows%' AND device_mac = '{$targetMac}' group by remote_mac")->num_rows();
             if($this->db->query("SELECT * from `pvuv-device` WHERE time = '{$timeFlag}' AND device_mac = '{$targetMac}'")->num_rows())
             {
-                $query_update = $this->db->query("UPDATE `pvuv-device` set pv = '{$pv}',download_app_times = '{$download_app_times}',uv = '{$uv}',uv_android = '{$uv_android}',uv_ios = '{$uv_ios}',uv_windows = '{$uv_windows}',uv_others = '{$uv_unknow}' WHERE device_mac = '{$targetMac}' AND time = '{$timeFlag}'");
+                $query_update = $this->db->query("UPDATE `pvuv-device` set pv = '{$pv}',download_app_times = '{$download_app_times}',uv = '{$uv}',uv_android = '{$uv_android}',uv_ios = '{$uv_ios}',uv_windows = '{$uv_windows}',uv_others = '{$uv_unknow}' WHERE device_mac = '{$targetMac}' AND time = '{$timeFlag}' AND sn = '{$sn}'");
                 if(!$query_update)
                 {
                     $flag = 1;
-                    echo "UPDATE `pvuv-device` set pv = '{$pv}',download_app_times = '{$download_app_times}',uv = '{$uv}',uv_android = '{$uv_android}',uv_ios = '{$uv_ios}',uv_windows = '{$uv_windows}',uv_others = '{$uv_unknow}' WHERE device_mac = '{$targetMac}' AND time = '{$timeFlag}'";
+                    echo "UPDATE `pvuv-device` set pv = '{$pv}',download_app_times = '{$download_app_times}',uv = '{$uv}',uv_android = '{$uv_android}',uv_ios = '{$uv_ios}',uv_windows = '{$uv_windows}',uv_others = '{$uv_unknow}' WHERE device_mac = '{$targetMac}' AND time = '{$timeFlag}' AND sn = '{$sn}'";
                 }
             }
             else
             {
-                $query_device = $this->db->query("INSERT INTO `pvuv-device` (device_mac,time,pv,download_app_times,uv,uv_android,uv_ios,uv_windows,uv_others) VALUES ('{$targetMac}','{$timeFlag}','{$pv}','{$download_app_times}','{$uv}','{$uv_android}','{$uv_ios}','{$uv_windows}','{$uv_unknow}')"); 
+                $query_device = $this->db->query("INSERT INTO `pvuv-device` (device_mac,sn,time,pv,download_app_times,uv,uv_android,uv_ios,uv_windows,uv_others) VALUES ('{$targetMac}','{$sn}','{$timeFlag}','{$pv}','{$download_app_times}','{$uv}','{$uv_android}','{$uv_ios}','{$uv_windows}','{$uv_unknow}')"); 
                 if(!$query_device)
                 {
                     $flag = 1;
-                    echo "INSERT INTO `pvuv-device` (device_mac,time,pv,download_app_times,uv,uv_android,uv_ios,uv_windows,uv_others) VALUES ('{$targetMac}','{$timeFlag}','{$pv}','{$download_app_times}','{$uv}','{$uv_android}','{$uv_ios}','{$uv_windows}','{$uv_unknow}')";
+                    echo "INSERT INTO `pvuv-device` (device_mac,sn,time,pv,download_app_times,uv,uv_android,uv_ios,uv_windows,uv_others) VALUES ('{$targetMac}','{$sn}','{$timeFlag}','{$pv}','{$download_app_times}','{$uv}','{$uv_android}','{$uv_ios}','{$uv_windows}','{$uv_unknow}')";
                 } 
             }
         
