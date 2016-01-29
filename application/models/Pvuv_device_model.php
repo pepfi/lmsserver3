@@ -20,7 +20,8 @@ class Pvuv_device_model extends CI_Model {
         {
             $targetMac = $deviceMacArray[$i]->device_mac;
             //$sql = "SELECT count('{$deviceMacArray[$i]->device_mac}') FROM `pvuv-log` WHERE time BETWEEN '{$timeFlag} 00:00:00' AND '{$timeFlag} 23:59:59'"; 
-            $result = $this->db->query("SELECT hostsn FROM `info_lteinfo` WHERE mac = '{$targetMac}'")->result_array();
+            $targetMacForSnString = str_replace('-',':',$targetMac);
+            $result = $this->db->query("SELECT hostsn FROM `info_lteinfo` WHERE mac = '{$targetMacForSnString}'")->result_array();
             if(isset($result[0]['hostsn']))
             {
                 $sn = $result[0]['hostsn'];

@@ -24,7 +24,8 @@ class MoviePlayTimes_model extends CI_Model {
         for($i = 0;$i < $deviceMacNum;$i++)
         {
             $targetMac = $deviceMacArray[$i]->device_mac;
-            $result = $this->db->query("SELECT hostsn FROM `info_lteinfo` WHERE mac = '{$targetMac}'")->result_array();
+            $targetMacForSnString = str_replace('-',':',$targetMac);
+            $result = $this->db->query("SELECT hostsn FROM `info_lteinfo` WHERE mac = '{$targetMacForSnString}'")->result_array();
             if(isset($result[0]['hostsn']))
             {
                 $sn = $result[0]['hostsn'];
