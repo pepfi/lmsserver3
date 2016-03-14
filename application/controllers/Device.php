@@ -70,6 +70,13 @@ class Device extends CI_Controller{
         
         $this->session->set_userdata('offset', $offset);
         $this->session->set_userdata('final_pagesize', $pageSize);
+        
+        $data['home_nav_class'] = "";
+        $data['device_nav_class'] = "class='active'";
+        $data['user_nav_class'] = '';
+        $data['log_nav_class'] = '';
+        $data['pvuv_nav_class'] = '';
+        $data['movie_nav_class'] = '';        
         $this->load->vars($data);
     }
     
@@ -84,13 +91,6 @@ class Device extends CI_Controller{
             $data['device_nums'] = $this->session->userdata('device_nums');
         }
         $this->page("index", $data['device_nums']);
- 
-        $data['home_nav_class'] = "";
-        $data['device_nav_class'] = "class='active'";
-        $data['user_nav_class'] = '';
-        $data['log_nav_class'] = '';
-        $data['pvuv_nav_class'] = '';
-        $data['movie_nav_class'] = '';
         
         $data['deviceinfo'] = $this->device_model->deviceinfo($this->session->userdata('offset'), $this->session->userdata('final_pagesize'));
   

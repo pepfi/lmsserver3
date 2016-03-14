@@ -26,11 +26,7 @@ class Register extends CI_Controller{
     
     public function register(){
 
-        $fileInfo = $_FILES['jsonFile'];
-        $tempName = $fileInfo['tmp_name'];
-//        $destFile = "application/views/global/custom/json/registerjson.json";
-//        move_uploaded_file($tempName, $destFile);
-        $jsonString = file_get_contents($tempName);
+        $jsonString = file_get_contents("php:/input", 'r');
         $jsonArray = json_decode($jsonString, true);
         
         $ip_start_threemode = substr($jsonArray['ipAddress'], 0, 3);

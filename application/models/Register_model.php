@@ -16,7 +16,7 @@ class Register_model extends CI_Model{
         $mac = $array['mac'];
         $query = $this->db->query("select mac from info_lteinfo where mac = '{$mac}'");
         if($query->num_rows()){
-            return "该MAC已经注册";
+            return "mac exist already";
         }
         
         $sql = "insert into info_lteinfo values(
@@ -30,7 +30,7 @@ class Register_model extends CI_Model{
         $query = $this->db->query($sql);
         
         if($query){
-            return "注册成功";
+            return "mac register ok";
         }
         
     }   
