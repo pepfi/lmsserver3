@@ -1,0 +1,16 @@
+﻿change scanap
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Tue Mar 15 10:21:01 2016 +0800
+#
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   application/controllers/ScanAP.php
+#	modified:   application/models/ScanAP_model.php
+#	modified:   application/views/admin/scanAp.php
+#
+
