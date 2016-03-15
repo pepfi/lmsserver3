@@ -1,8 +1,8 @@
 <?php
-class ScanAP extends CI_Controller{
+class Scanap extends CI_Controller{
     public function __construct(){
         parent::__construct();
-        $this->load->model("ScanAP_model");
+        $this->load->model("Scanap_model");
         $this->load->library('pagination');
     }
     
@@ -11,7 +11,7 @@ class ScanAP extends CI_Controller{
         $jsonString = file_get_contents("php:/input", 'r');
         $jsonArray = json_decode($jsonString, true);
         
-        date_default_timezone_set('PRC');
+//        date_default_timezone_set('PRC');
 //        $jsonArray['time'] = date('Y-m-d H:i:s', time());
         
         $this->scanap_model->register($jsonArray);
@@ -20,8 +20,8 @@ class ScanAP extends CI_Controller{
 
     
     public function page(){
-        $config['base_url'] = base_url('/ScanAP/index/');;
-        $config['total_rows'] = $this->ScanAP_model->info_nums();
+        $config['base_url'] = base_url('/Scanap/index/');;
+        $config['total_rows'] = $this->Scanap_model->info_nums();
         $config['per_page'] = 5;
         $config['first_link'] = '首页';        
         $config['last_link'] = '尾页';
@@ -37,7 +37,7 @@ class ScanAP extends CI_Controller{
         
         $offset = ($this->uri->segment(3) == null) ? 0 : $this->uri->segment(3);
         $pageSize = $config['per_page'];
-        $data['ap_info'] = $this->ScanAP_model->ap_info($offset, $pageSize);
+        $data['ap_info'] = $this->Scanap_model->ap_info($offset, $pageSize);
         $this->load->vars($data);
     }
 
@@ -45,6 +45,6 @@ class ScanAP extends CI_Controller{
     public function index(){
         $this->page();
         
-        $this->load->view('admin/scanAp');
+        $this->load->view('admin/scanap');
     }    
 }

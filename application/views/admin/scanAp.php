@@ -28,7 +28,7 @@
 </div>
 <div style="width:600px;float:right;margin-top:10px;">
     <span><?php echo $page;?>跳到<input type='text' id='to_page' style='width:30px;height:20px'>页</span>
-    <input type="hidden" id="jump_url" value="<?php echo base_url('ScanAP/index');?>">
+    <input type="hidden" id="jump_url" value="<?php echo base_url('Scanap/index');?>">
     <input type="button" value="确定" class='btn btn-default btn-xs' onClick='jump()'>
 </div> 
 
